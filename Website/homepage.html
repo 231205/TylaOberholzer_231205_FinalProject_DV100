@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandwich Shop</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+  <style>
+    /* CSS styles for the navigation bar */
+    nav {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+
+    nav ul li a:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="homepage.html">Home</a></li>
+    <li><a href="Pages/aboutus.html">About Us</a></li>
+    <li><a href="Pages/contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+
+<!-- Homepage Stuffies -->
+<header class="header">
+  <div class="header-overlay">
+    <h1>Welcome to the Sandwich Shop</h1>
+  </div>
+</header>
+
+
+  <section class="subs-of-the-month">
+    <h2>Subs of the Month</h2>
+    <div class="sub">
+      <h3>Sub 1</h3>
+      <img src="Pics/sammy.png" alt="Sub 1" class="sub-image">
+      <p>Topping 1: Lettuce, Tomato, Cheese</p>
+    </div>
+    <div class="sub">
+      <h3>Sub 2</h3>
+      <img src="Pics/sammy2.png" alt="Sub 2" class="sub-image">
+      <p>Topping 2: Tuna, Chicken, Beef</p>
+    </div>
+  </section>
+
+  <!-- Make Your Own Sandwhich Section, yummy -->
+  <section class="make-your-own-sub">
+    <h2>Make Your Own Sub!</h2>
+    <img src="Pics/sammy2.png" class="sub-image">
+    <div class="sub-builder">
+      <label for="sub-name">Sub Name:</label>
+      <input type="text" id="sub-name" name="sub-name" placeholder="Enter sub name">
+      <label for="base-bread">Base Bread:</label>
+      <select id="base-bread" name="base-bread" class="topping-dropdown">
+        <option value="white">White Bread</option>
+        <option value="wheat">Wheat Bread</option>
+        <option value="multigrain">Multigrain Bread</option>
+      </select>
+      <label for="toppings">Toppings:</label>
+      <select id="toppings" name="toppings[]" multiple class="topping-dropdown">
+        <option value="lettuce">Lettuce</option>
+        <option value="tomato">Tomato</option>
+        <option value="cheese">Cheese</option>
+        <option value="bacon">Bacon</option>
+        <option value="onion">Onion</option>
+        <option value="pickles">Pickles</option>
+      </select>
+      <label for="sauce">Sauce:</label>
+      <select id="sauce" name="sauce" class="topping-dropdown">
+        <option value="mayo">Mayonnaise</option>
+        <option value="mustard">Mustard</option>
+        <option value="ketchup">Ketchup</option>
+        <option value="ranch">Ranch</option>
+        <option value="honey-mustard">Honey Mustard</option>
+      </select>
+      <button id="add-to-order">Add to Order</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Sandwich Shop. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // event listener ._.
+    var addToOrderBtn = document.getElementById("add-to-order");
+    addToOrderBtn.addEventListener("click", addToOrder);
+
+    function addToOrder() {
+      // Retrieve the selected sub details
+      var subName = document.getElementById("sub-name").value;
+      var baseBread = document.getElementById("base-bread").value;
+      var selectedToppings = Array.from(document.getElementById("toppings").selectedOptions).map(option => option.value);
+      var sauce = document.getElementById("sauce").value;
+
+      // Create an object with the sub details
+      var sub = {
+        subName: subName,
+        baseBread: baseBread,
+        toppings: selectedToppings,
+        sauce: sauce
+      };
+
+      // Get order details if there are any
+      var orderDetails = JSON.parse(localStorage.getItem("orderDetails")) || [];
+
+      // Add the current sandwhich to the order details
+      orderDetails.push(sub);
+
+      // Store the order
+      localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
+
+      // Redirect to the checkout page
+      window.location.href = "Pages/checkout.html";
+    }
+  </script>
+</body>
+</html>

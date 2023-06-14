@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+
+</head>
+<body>
+    <style>
+    /* CSS styles for the navigation bar */
+    nav {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+
+    nav ul li a:hover {
+      background-color: #555;
+    }
+  </style>
+
+  <nav>
+    <ul>
+      <li><a href="../homepage.html">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+  <h1>Checkout</h1>
+
+  <div class="order-details">
+    <h2>Order Details</h2>
+    <div id="order-list"></div>
+  </div>
+
+  <div class="coupon-section">
+    <h2>Coupon</h2>
+    <label for="coupon-code">Enter coupon code:</label>
+    <input type="text" id="coupon-code" name="coupon-code">
+    <button id="apply-coupon">Apply</button>
+  </div>
+
+  <script>
+    // Get the order details...
+    var orderDetails = JSON.parse(localStorage.getItem("orderDetails")) || [];
+
+    // Display the order details ()_()
+    var orderList = document.getElementById("order-list");
+    orderDetails.forEach(function(order, index) {
+      var subName = order.subName;
+      var baseBread = order.baseBread;
+      var toppings = order.toppings.join(", ");
+      var sauce = order.sauce;
+
+      var orderItem = document.createElement("div");
+      orderItem.classList.add("order-item");
+
+      var subNameElement = document.createElement("p");
+      subNameElement.innerHTML = "Sub Name: " + subName;
+      orderItem.appendChild(subNameElement);
+
+      var baseBreadElement = document.createElement("p");
+      baseBreadElement.innerHTML = "Base Bread: " + baseBread;
+      orderItem.appendChild(baseBreadElement);
+
+      var toppingsElement = document.createElement("p");
+      toppingsElement.innerHTML = "Toppings: " + toppings;
+      orderItem.appendChild(toppingsElement);
+
+      var sauceElement = document.createElement("p");
+      sauceElement.innerHTML = "Sauce: " + sauce;
+      orderItem.appendChild(sauceElement);
+
+      var removeButton = document.createElement("button");
+      removeButton.innerHTML = "Remove";
+      removeButton.addEventListener("click", function() {
+
+        orderDetails.splice(index, 1);
+
+        localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
+        // Remove the order item from the DOM
+        orderItem.remove();
+      });
+      orderItem.appendChild(removeButton);
+
+      orderList.appendChild(orderItem);
+    });
+  </script>
+</body>
+</html>

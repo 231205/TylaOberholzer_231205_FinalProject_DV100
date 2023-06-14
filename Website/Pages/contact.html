@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+
+  <style>
+    /* CSS styles for the navigation bar */
+    nav {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+
+    nav ul li a:hover {
+      background-color: #555;
+    }
+
+    /* CSS styles for the contact form */
+    body {
+      background: linear-gradient(to left, #00E0FF, #8B00A8);
+      color: #fff;
+    }
+
+    .contact-form {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      animation: fadein 2s;
+    }
+
+    .contact-form h3,
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+      color: #fff;
+    }
+
+    .input-container {
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px;
+      width: 100%;
+    }
+
+    button[type="submit"] {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      cursor: pointer;
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="../homepage.html">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- 
+
+    Contact Us Section
+    V1 - Contact info
+    V2 - Able to send us a message xD
+
+
+   -->
+  <section id="contact" class="contact-us">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <div class="contact-details">
+        <h3>Get in touch</h3>
+        <p>If you have any questions or inquiries, feel free to reach out to us.</p>
+        <ul>
+          <li>Email: [231205@virtualwindow.co.za]</li>
+          <li>Phone: [0634211312]</li>
+          <li>Address: [16 mafeking avenue]</li>
+        </ul>
+      </div>
+      <div class="contact-form">
+        <h3>Send us a message</h3>
+        <form>
+          <div class="input-container">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="input-container">
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="input-container">
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+          </div>
+          <div class="input-container">
+            <button type="submit">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
